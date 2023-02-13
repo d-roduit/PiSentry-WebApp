@@ -1,0 +1,24 @@
+{
+  "name": "pisentry-web-app",
+  "version": "1.0.0",
+  "description": "Web application to watch live footage from the Raspberry Pi camera and interact with the PiSentry camera software",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/d-roduit/PiSentry-WebApp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/d-roduit/PiSentry-WebApp/issues"
+  },
+  "homepage": "https://github.com/d-roduit/PiSentry-WebApp",
+  "dependencies": {
+    "flv.js": "^1.6.2",
+    "video.js": "^7.21.2",
+    "videojs-flvjs": "^0.2.0"
+  }
+}
