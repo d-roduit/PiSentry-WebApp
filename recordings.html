@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/placeholder-loading/dist/css/placeholder-loading.min.css">
+    <title>mes recordings</title>
+    <style>
+        div.fake-video-placeholder {
+            height: 270px;
+            width: 480px;
+            margin-bottom: 10px;
+        }
+
+        video {
+            display: none;
+            height: 270px;
+            width: 480px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Hello on the recording</h1>
+
+    <script>
+        const fetchRecordings = async () => {
+            const recordingsEndpoint = 'http://127.0.0.1:4040/recordings/';
+            const response = await fetch(recordingsEndpoint);
+
+            if (!response.ok) {
+                console.log('response not ok');
+                return;
+            }
+
+            const data = await response.json();
+
+            let i = 0;
+            for (let recording of data.recordings) {
+                // Create fake design
+                const fakeVideoPlaceholder = document.createElement('div');
+                const fakeVideoPlaceholderId = `fake-video-placeholder-${i}`;
+                fakeVideoPlaceholder.classList.add('ph-item', 'ph-picture', 'fake-video-placeholder');
+                fakeVideoPlaceholder.id = fakeVideoPlaceholderId;
+
+                const videoElement = document.createElement("video");
+                videoElementId = `video-${i}`;
+                videoElement.id = videoElementId;
+                videoElement.src = `${recordingsEndpoint}${recording}`;
+                // videoElement.width = 960;
+                // videoElement.height = 540;
+                videoElement.controls = true;
+                videoElement.addEventListener('loadeddata', function() {
+                    // document.getElementById(videoElementId).style.display = 'block';
+                    this.style.display = 'block';
+                    document.getElementById(fakeVideoPlaceholderId).style.display = 'none';
+                });
+
+                document.body.appendChild(videoElement);
+                document.body.appendChild(fakeVideoPlaceholder);
+                i++;
+            }
+        };
+
+        fetchRecordings();
+    </script>
+</body>
+</html>
