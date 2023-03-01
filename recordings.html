@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unpkg.com/placeholder-loading/dist/css/placeholder-loading.min.css">
-    <title>mes recordings</title>
+    <title>My recordings</title>
     <style>
         div.fake-video-placeholder {
             height: 270px;
@@ -26,46 +26,39 @@
 <body>
     <h1>Hello on the recording</h1>
 
-    <script>
-        const fetchRecordings = async () => {
-            const recordingsEndpoint = 'http://127.0.0.1:4040/recordings/';
-            const response = await fetch(recordingsEndpoint);
+    <script type="module">
+        import FetchRequest from './helpers/FetchRequest.js';
+        import config from './config/config.js';
 
-            if (!response.ok) {
-                console.log('response not ok');
-                return;
-            }
+        FetchRequest
+            .defaultResponseNotOk((response) => console.log(response))
+            .defaultException((err) => console.log(err));
 
-            const data = await response.json();
+        const { backendApiUrl } = config;
+        const recordingsEndpoint = `${backendApiUrl}/v1/recordings`;
 
-            let i = 0;
-            for (let recording of data.recordings) {
-                // Create fake design
-                const fakeVideoPlaceholder = document.createElement('div');
-                const fakeVideoPlaceholderId = `fake-video-placeholder-${i}`;
-                fakeVideoPlaceholder.classList.add('ph-item', 'ph-picture', 'fake-video-placeholder');
-                fakeVideoPlaceholder.id = fakeVideoPlaceholderId;
+        const addRecordingToPage = (recordingFilename, index) => {
+            // Create fake design
+            const fakeVideoPlaceholder = document.createElement('div');
+            fakeVideoPlaceholder.id = `fake-video-placeholder-${index}`;
+            fakeVideoPlaceholder.classList.add('ph-item', 'ph-picture', 'fake-video-placeholder');
 
-                const videoElement = document.createElement("video");
-                videoElementId = `video-${i}`;
-                videoElement.id = videoElementId;
-                videoElement.src = `${recordingsEndpoint}${recording}`;
-                // videoElement.width = 960;
-                // videoElement.height = 540;
-                videoElement.controls = true;
-                videoElement.addEventListener('loadeddata', function() {
-                    // document.getElementById(videoElementId).style.display = 'block';
-                    this.style.display = 'block';
-                    document.getElementById(fakeVideoPlaceholderId).style.display = 'none';
-                });
+            // Create video element
+            const videoElement = document.createElement('video');
+            videoElement.src = `${recordingsEndpoint}/${recordingFilename}`;
+            videoElement.controls = true;
+            videoElement.addEventListener('loadeddata', function() {
+                this.style.display = 'block';
+                document.getElementById(fakeVideoPlaceholder.id).style.display = 'none';
+            });
 
-                document.body.appendChild(videoElement);
-                document.body.appendChild(fakeVideoPlaceholder);
-                i++;
-            }
+            // Append elements to DOM
+            document.body.append(videoElement, fakeVideoPlaceholder);
         };
 
-        fetchRecordings();
+        new FetchRequest(recordingsEndpoint)
+            .success((data) => data.recordings.forEach((recordingFilename, index) => addRecordingToPage(recordingFilename, index)))
+            .make();
     </script>
 </body>
 </html>
