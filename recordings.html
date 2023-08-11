@@ -49,7 +49,7 @@
             videoElement.controls = true;
             videoElement.addEventListener('loadeddata', function() {
                 this.style.display = 'block';
-                document.getElementById(fakeVideoPlaceholder.id).style.display = 'none';
+                fakeVideoPlaceholder.style.display = 'none';
             });
 
             videoElement.addEventListener('error', () => {
