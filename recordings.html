@@ -65,7 +65,13 @@
                 method: 'GET',
                 headers: { Authorization: 'mytoken' }
             })
-            .success((data) => data.recordings.forEach((recordingFilename, index) => addRecordingToPage(recordingFilename, index)))
+            .success((data) => {
+                data.detectionSessions.forEach((detectionSession) => {
+                    detectionSession.recordings.forEach((recording, index) => {
+                        addRecordingToPage(recording.recording_filename, index);
+                    });
+                });
+            })
             .make();
     </script>
 </body>
