@@ -121,14 +121,20 @@
         const startStreamingButton = document.getElementById('startStreamingButton');
         startStreamingButton.addEventListener('click', () => {
             new FetchRequest(`${backendApiUrl}/v1/streaming/start`)
-                .options({ method: 'POST' })
+                .options({
+                    method: 'POST',
+                    headers: { Authorization: 'mytoken' }
+                })
                 .make();
         });
 
         const stopStreamingButton = document.getElementById('stopStreamingButton');
         stopStreamingButton.addEventListener('click', () => {
             new FetchRequest(`${backendApiUrl}/v1/streaming/stop`)
-                .options({ method: 'POST' })
+                .options({
+                    method: 'POST',
+                    headers: { Authorization: 'mytoken' }
+                })
                 .make();
         });
 
