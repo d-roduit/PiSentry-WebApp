@@ -78,6 +78,9 @@
         import config from './config/config.js';
         const { backendApiUrl, mediaServerUrl } = config;
 
+        /**
+         * Video Player
+         */
         const createMediaSourceElement = () => {
             const sourceElement = document.createElement('source');
 
@@ -158,6 +161,9 @@
             myPlayer.play();
         });
 
+        /**
+         * Streaming action buttons
+         */
         const startStreamingButton = document.getElementById('startStreamingButton');
         startStreamingButton.addEventListener('click', () => {
             new FetchRequest(`${backendApiUrl}/v1/streaming/start`)
@@ -177,15 +183,6 @@
                 })
                 .make();
         });
-
-    // player.ready(function() {
-    //     this.play();
-
-    //     this.on("ended", function() {
-    //         videojs.log("awww over so soon");
-    //     });
-    // });
-
 
         /**
          * Push notifications
