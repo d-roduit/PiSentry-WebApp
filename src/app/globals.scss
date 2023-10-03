@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Place your CSS variables here */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Modify your CSS variables here */
+  }
+}
+
+body {}

@@ -1,0 +1,9 @@
+#myPlayer {
+    width: 320px;
+    height: 180px;
+
+    @media only screen and (min-width: 900px) {
+        width: 640px;
+        height: 360px;
+    }
+}
