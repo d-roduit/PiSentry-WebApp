@@ -6,7 +6,6 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/fr';
 import isToday from 'dayjs/plugin/isToday';
 import CircledIcon from '@/components/CircledIcon/CircledIcon.jsx';
-import EmptyImage from 'public/assets/images/empty_image.png';
 
 dayjs.locale('fr');
 dayjs.extend(isToday);
