@@ -1,4 +1,4 @@
-import './styles.scss';
+
 import { Suspense } from 'react';
 import RecordingsList from '@/components/RecordingsList/RecordingsList.jsx';
 import LoadingSpinner from '@/components/Loading/Spinner.jsx';
