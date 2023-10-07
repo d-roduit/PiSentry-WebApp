@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import Link from 'next/link';
 import { Suspense } from 'react';
 import LoadingSpinner from '@/components/Loading/Spinner.jsx';
+import { ReduxProvider } from '@/lib/redux/ReduxProvider.jsx';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -151,10 +152,12 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
     return (
-        <html lang="en">
-            <body className={`${inter.className} h-screen max-h-screen md:w-[600px] md:m-auto md:shadow-2xl`}>
-                {children}
-            </body>
-        </html>
+        <ReduxProvider>
+            <html lang="en">
+                <body className={`${inter.className} h-screen max-h-screen md:w-[600px] md:m-auto md:shadow-2xl`}>
+                    {children}
+                </body>
+            </html>
+        </ReduxProvider>
     );
 }
