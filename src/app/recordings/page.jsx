@@ -46,11 +46,8 @@ export default async function RecordingsPage() {
                     <Link href="/recordings" className="bg-white hover:bg-gray-100 text-gray-800 py-2 px-4 border border-gray-400 rounded shadow ml-3">Recordings</Link>
                 </nav>
             </section>
-            <h1 className="text-2xl mb-3">Recordings page</h1>
             <section className="overflow-scroll">
-                <Suspense fallback={<RecordingsListPlaceholder />}>
-                    <RecordingsList />
-                </Suspense>
+                <RecordingsList />
             </section>
         </div>
     );

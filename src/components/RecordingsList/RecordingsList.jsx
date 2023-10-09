@@ -1,3 +1,5 @@
+'use client';
+
 import urls from '@/urls.js';
 import FetchRequest from '@/helpers/FetchRequest.js';
 import RecordingsListItem from '@/components/RecordingsListItem/RecordingsListItem.jsx';
@@ -6,24 +8,14 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/fr';
 import isToday from 'dayjs/plugin/isToday';
 import CircledIcon from '@/components/CircledIcon/CircledIcon.jsx';
+import RecordingsListPlaceholder from '@/components/RecordingsListPlaceholder/RecordingsListPlaceholder.jsx';
+import useSWR from 'swr';
 
 dayjs.locale('fr');
 dayjs.extend(isToday);
 
 const { backendApiUrl } = urls;
-
 const recordingsEndpoint = `${backendApiUrl}/v1/recordings`;
-
-const fetchRecordingsByDate = async () => {
-    await new Promise((resolve) => setTimeout(resolve, 1000)); // TODO: JUST TO TEST SUSPENSE, NEED TO BE REMOVED AFTER
-    return new FetchRequest(recordingsEndpoint)
-        .options({
-            method: 'GET',
-            headers: { Authorization: 'mytoken' },
-            next: { revalidate: 0 },
-        })
-        .make();
-};
 
 const renderDateTitle = (dayjsDate) => (
     <div className="sticky top-0 z-10 bg-white md:backdrop-blur-xl md:bg-white/50">
@@ -93,16 +85,26 @@ const renderRecordingsList = (recordingsByDate) => {
     );
 };
 
-export default async function RecordingsList() {
-    const recordingsByDate = await fetchRecordingsByDate();
+export default function RecordingsList() {
+    const { data: recordingsByDate, error, isLoading } = useSWR(
+        recordingsEndpoint,
+        () => new FetchRequest(recordingsEndpoint).options({
+            method: 'GET',
+            headers: { Authorization: 'mytoken' },
+        }).make()
+    );
 
-    return typeof recordingsByDate !== 'undefined' && Array.isArray(recordingsByDate)
-        ? renderRecordingsList(recordingsByDate)
-        : (
-            <div>
-                <p className="flex items-center text-gray-500">
-                    <FaCircleExclamation className="inline-block mr-2" /> Error while recovering recordings
-                </p>
-            </div>
-        )
+
+
+    if (error) return (
+        <div>
+            <p className="flex items-center text-gray-500">
+                <FaCircleExclamation className="inline-block mr-2" /> Error while recovering recordings
+            </p>
+        </div>
+    );
+
+    if (isLoading) return <RecordingsListPlaceholder />
+
+    return renderRecordingsList(recordingsByDate);
 }
