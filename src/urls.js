@@ -1,6 +1,6 @@
 const development = {
-    backendApiUrl: 'http://127.0.0.1:7070',
-    mediaServerUrl: 'http://127.0.0.1:6060',
+    backendApiUrl: 'http://192.168.1.211:7070',
+    mediaServerUrl: 'http://192.168.1.211:6060',
 };
 
 const production = {

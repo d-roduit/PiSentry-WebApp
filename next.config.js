@@ -8,6 +8,9 @@ const nextConfig = {
                 // port: '',
                 // pathname: '/*',
             },
+            {
+                hostname: '192.168.1.211',
+            }
         ],
     },
 }
