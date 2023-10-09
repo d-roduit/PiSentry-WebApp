@@ -15,8 +15,8 @@ const renderLiveItemPlaceholder = () => (
     </div>
 );
 
-const renderRecordingsListItemPlaceholder = () => (
-    <div className="group flex items-center h-20">
+const renderRecordingsListItemPlaceholder = (index) => (
+    <div key={index} className="group flex items-center h-20">
         <div className="ml-5 w-14 h-5 rounded bg-gray-300" />
         <div className="ml-5 relative -z-10 self-stretch flex items-center">
             <div className="absolute left-1/2 -translate-x-1/2 -z-20 h-full border-r-2 border-r-gray-100 group-first:bottom-0 group-first:h-1/2 group-last:top-0 group-last:h-1/2 group-only:border-r-0" />
@@ -28,7 +28,7 @@ const renderRecordingsListItemPlaceholder = () => (
 
 const renderRecordingsListItemsPlaceholder = () => {
     const items = new Array(7).fill(null);
-    return items.map(item => renderRecordingsListItemPlaceholder());
+    return items.map((item, index) => renderRecordingsListItemPlaceholder(index));
 }
 
 export default async function RecordingsListPlaceholder() {
