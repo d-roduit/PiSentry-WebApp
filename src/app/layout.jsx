@@ -154,7 +154,7 @@ export default function RootLayout({ children }) {
     return (
         <ReduxProvider>
             <html lang="en">
-                <body className={`${inter.className} h-screen max-h-screen md:w-[600px] md:m-auto md:shadow-2xl`}>
+                <body className={`${inter.className} h-screen max-h-screen select-none md:w-[600px] md:m-auto md:shadow-2xl`}>
                     {children}
                 </body>
             </html>
