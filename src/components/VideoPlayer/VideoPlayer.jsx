@@ -17,18 +17,48 @@ export default function VideoPlayer({ options, onReady, className }) {
             playerElement.classList.add('vjs-big-play-centered');
             playerContainerRef.current.appendChild(playerElement);
 
-            const player = playerRef.current = videojs(playerElement, options, () => {
-                videojs.log('player is ready');
+            const defaultOptions = {
+                // liveui: true,
+                fluid: true,
+                controls: true,
+                playsinline: true,
+                bigPlayButton: true,
+                controlBar: {
+                    volumePanel: false,
+                    currentTimeDisplay: true,
+                    timeDivider: true,
+                    durationDisplay: true,
+                    remainingTimeDisplay: false,
+                    // playToggle: false,
+                    // remainingTimeDisplay: true,
+                    // currentTimeDisplay: false,
+                    // timeDivider: false,
+                    // durationDisplay: false,
+                    // progressControl: {
+                    //     seekBar: false
+                    // },
+                    pictureInPictureToggle: false,
+                    fullscreenToggle: true,
+                },
+                userActions: {
+                    hotkeys: true,
+                },
+            };
 
+            const readyCallback = () => {
                 onReady && onReady(player);
-            });
+            };
+
+            const player = playerRef.current = videojs(
+                playerElement,
+                { ...defaultOptions, ...options },
+                readyCallback
+            );
 
             // You could update an existing player in the `else` block here
             // on prop change, for example:
         } else {
             const player = playerRef.current;
-
-            player.autoplay(options.autoplay);
             player.src(options.sources);
         }
     }, [onReady, options, playerContainerRef]);
