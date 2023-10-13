@@ -5,6 +5,7 @@ import LoadingSpinner from '@/components/Loading/Spinner.jsx';
 import Link from 'next/link';
 import RecordingsListPlaceholder from '@/components/RecordingsListPlaceholder/RecordingsListPlaceholder.jsx';
 import VideoPlaceholder from '@/components/VideoPlaceholder.jsx';
+import Players from '@/components/Players/Players.jsx';
 
 export const metadata = {
     title: 'Recordings',
@@ -45,6 +46,9 @@ export default async function RecordingsPage() {
                     <Link href="/" className="bg-white hover:bg-gray-100 text-gray-800 py-1 px-4 border border-gray-400 rounded shadow">Home</Link>
                     <Link href="/recordings" className="bg-white hover:bg-gray-100 text-gray-800 py-1 px-4 border border-gray-400 rounded shadow ml-3">Recordings</Link>
                 </nav>
+            </section>
+            <section>
+                <Players />
             </section>
             <section className="overflow-scroll">
                 <RecordingsList />
