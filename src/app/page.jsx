@@ -152,9 +152,9 @@ export default function HomePage() {
     return (
         <>
             <header>
-                <nav className="my-5 ml-2">
-                    <Link href="/" className="bg-white hover:bg-gray-100 text-gray-800 py-2 px-4 border border-gray-400 rounded shadow">Home</Link>
-                    <Link href="/recordings" className="bg-white hover:bg-gray-100 text-gray-800 py-2 px-4 border border-gray-400 rounded shadow ml-3">Recordings</Link>
+                <nav className="my-2 ml-2">
+                    <Link href="/" className="bg-white hover:bg-gray-100 text-gray-800 py-1 px-4 border border-gray-400 rounded shadow">Home</Link>
+                    <Link href="/recordings" className="bg-white hover:bg-gray-100 text-gray-800 py-1 px-4 border border-gray-400 rounded shadow ml-3">Recordings</Link>
                 </nav>
             </header>
             <main>
