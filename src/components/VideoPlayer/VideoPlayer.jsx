@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react';
 import videojs from 'video.js';
 import 'video.js/dist/video-js.min.css';
+import './vjs-pisentry-skin.scss';
 
 export default function VideoPlayer({ options, onReady, className }) {
     const playerContainerRef = useRef(null);
@@ -14,7 +15,7 @@ export default function VideoPlayer({ options, onReady, className }) {
             // The Video.js player needs to be inside the component element for React 18 Strict Mode.
             const playerElement = document.createElement('video-js');
 
-            playerElement.classList.add('vjs-big-play-centered');
+            playerElement.classList.add('vjs-big-play-centered', 'vjs-pisentry-skin');
             playerContainerRef.current.appendChild(playerElement);
 
             const defaultOptions = {
@@ -39,6 +40,15 @@ export default function VideoPlayer({ options, onReady, className }) {
                     // },
                     pictureInPictureToggle: false,
                     fullscreenToggle: true,
+                    children: [
+                        'progressControl',
+                        'playToggle',
+                        'currentTimeDisplay',
+                        'timeDivider',
+                        'durationDisplay',
+                        'customControlSpacer',
+                        'fullscreenToggle',
+                    ],
                 },
                 userActions: {
                     hotkeys: true,
