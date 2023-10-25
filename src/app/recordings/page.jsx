@@ -50,7 +50,7 @@ export default async function RecordingsPage() {
             <section>
                 <Players />
             </section>
-            <section className="overflow-scroll">
+            <section className="overflow-y-scroll">
                 <RecordingsList />
             </section>
         </div>
