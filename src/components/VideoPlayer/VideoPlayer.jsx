@@ -19,25 +19,16 @@ export default function VideoPlayer({ options, onReady, className }) {
             playerContainerRef.current.appendChild(playerElement);
 
             const defaultOptions = {
-                // liveui: true,
                 fluid: true,
                 controls: true,
                 playsinline: true,
                 bigPlayButton: true,
+                liveui: true,
+                liveTracker: {
+                    trackingThreshold: 5,
+                    liveTolerance: 5,
+                },
                 controlBar: {
-                    volumePanel: false,
-                    currentTimeDisplay: true,
-                    timeDivider: true,
-                    durationDisplay: true,
-                    remainingTimeDisplay: false,
-                    // playToggle: false,
-                    // remainingTimeDisplay: true,
-                    // currentTimeDisplay: false,
-                    // timeDivider: false,
-                    // durationDisplay: false,
-                    // progressControl: {
-                    //     seekBar: false
-                    // },
                     pictureInPictureToggle: false,
                     fullscreenToggle: true,
                     children: [
@@ -48,6 +39,8 @@ export default function VideoPlayer({ options, onReady, className }) {
                         'durationDisplay',
                         'customControlSpacer',
                         'fullscreenToggle',
+                        'liveDisplay',
+                        'seekToLive',
                     ],
                 },
                 userActions: {
