@@ -44,7 +44,7 @@ export default function RecordingsList() {
     const renderRecordingsListItems = (detection_sessions) =>
         detection_sessions
             .sort((a, b) => b.detection_session_id - a.detection_session_id) // Sort in descending order
-            .map(({ recorded_at, recordings }) =>
+            .map(({ recordings }) =>
                 recordings.map(recording => (
                     <RecordingsListItem key={recording.recording_id} data={recording} isSelected={selectedRecording?.recording_id === recording.recording_id}/>
                 ))
