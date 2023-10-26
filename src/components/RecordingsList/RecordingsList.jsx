@@ -27,13 +27,15 @@ const renderDateTitle = (dayjsDate) => (
 );
 
 export default function RecordingsList() {
-    const { data: recordingsByDate, error, isLoading } = useSWR(
+    const { data, error, isLoading } = useSWR(
         recordingsEndpoint,
         () => new FetchRequest(recordingsEndpoint).options({
             method: 'GET',
             headers: { Authorization: 'mytoken' },
-        }).make()
+        }).responseType(FetchRequest.ResponseType.Json).make()
     );
+
+    const recordingsByDate = data?.responseData;
 
     const selectedRecording = useSelector(selectSelectedRecording);
 
