@@ -1,102 +1,19 @@
 'use client';
 
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import VideoPlayer from '@/components/VideoPlayer/VideoPlayer.jsx';
-import videojs from 'video.js';
 import FetchRequest from '@/helpers/FetchRequest.js';
 import urls from '@/urls.js';
 
-const { backendApiUrl, mediaServerUrl } = urls;
+const { backendApiUrl } = urls;
 
 export default function HomePage() {
 
     const [pushSubscription, setPushSubscription] = useState(null);
-    const [videojsOptions, setVideojsOptions] = useState(null);
-
-    const playerRef = useRef(null);
 
     useEffect(() => {
-        initializeVideojsOptions();
         registerServiceWorker();
     }, []);
-
-
-    /**
-     * Video VideoPlayer
-     */
-    const initializeVideojsOptions = async () => {
-        const flvjs = await import('flv.js');
-        window.flvjs = flvjs;
-
-        const options = {
-            controls: true,
-            playsinline: true,
-            userActions: {
-                // click: (ev) => {
-                //     const videoElement = ev.currentTarget;
-                //     if (videoElement.paused) {
-                //         console.log('videoElement', videoElement);
-                //
-                //         videoElement.currentTime = myPlayer.liveTracker.seekableEnd() - 0.5;
-                //         videoElement.play();
-                //         return;
-                //     }
-                //     videoElement.pause();
-                // }
-            },
-            bigPlayButton: true,
-            controlBar: {
-                playToggle: false,
-                volumePanel: false,
-                currentTimeDisplay: false,
-                timeDivider: false,
-                durationDisplay: false,
-                progressControl: {
-                    seekBar: false
-                },
-                remainingTimeDisplay: false,
-                pictureInPictureToggle: false,
-                fullscreenToggle: true,
-            },
-            // sources: [{
-            //     src: `${mediaServerUrl}/PiSentry/Spooky_Stream/index.m3u8`,
-            //     type: 'application/x-mpegURL',
-            // }]
-        };
-
-        if (flvjs.isSupported()) {
-            // console.log('flv supported');
-            // options.flvjs = {
-            //     mediaDataSource: {
-            //         type: 'flv',
-            //         isLive: true,
-            //         cors: true,
-            //         withCredentials: false,
-            //     },
-            // };
-
-            options.sources = [{
-                src: `${mediaServerUrl}/PiSentry/Spooky_Stream.flv`,
-                type: 'video/x-flv',
-            }];
-        }
-
-        setVideojsOptions(options);
-    };
-
-    const handlePlayerReady = (player) => {
-        playerRef.current = player;
-
-        // You can handle player events here, for example:
-        player.on('waiting', () => {
-            videojs.log('player is waiting');
-        });
-
-        player.on('dispose', () => {
-            videojs.log('player will dispose');
-        });
-    };
 
     /**
      * Streaming action buttons
@@ -159,11 +76,7 @@ export default function HomePage() {
             </header>
             <main>
                 <div className="flex flex-col items-center pt-24">
-                    <h1 className="text-2xl">Hello on the stream !</h1>
-
-                    {videojsOptions !== null && (
-                        <VideoPlayer options={videojsOptions} onReady={handlePlayerReady} className="mt-10" />
-                    )}
+                    <h1 className="text-2xl">Hello on PiSentry !</h1>
 
                     <div className="mt-3">
                         <button
