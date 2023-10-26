@@ -18,6 +18,17 @@ const isChangingItemCallback = (prev, next) => {
     // next.domElement.play();
 };
 
+const renderCameraVideoPlayer = (cameraData) => (
+    <VideoPlayer
+        options={{
+            sources: {
+                src: `${mediaServerUrl}/pisentry/${cameraData.port}/index.m3u8`,
+                type: 'application/x-mpegURL',
+            }
+        }}
+    />
+)
+
 export default function CamerasCarousel() {
     const { data, error, isLoading } = useSWR(
         camerasEndpoint,
@@ -44,27 +55,8 @@ export default function CamerasCarousel() {
     return hasSeveralCameras ? (
         <Carousel
             items={cameras}
-            renderItem={({ item, itemRef }) => (
-                <VideoPlayer
-                    // ref={itemRef}
-                    options={{
-                        sources: {
-                            src: `${mediaServerUrl}/pisentry/${item.port}/index.m3u8`,
-                            type: 'application/x-mpegURL',
-                        }
-                    }}
-                />
-            )}
+            renderItem={({ item, itemRef }) => renderCameraVideoPlayer(item)}
             onItemChange={isChangingItemCallback}
         />
-    ) : (
-        <VideoPlayer
-            options={{
-                sources: {
-                    src: `${mediaServerUrl}/pisentry/${cameras?.[0].port}/index.m3u8`,
-                    type: 'application/x-mpegURL',
-                }
-            }}
-        />
-    );
+    ) : renderCameraVideoPlayer(cameras?.[0]);
 }
