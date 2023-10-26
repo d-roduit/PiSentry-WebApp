@@ -2,10 +2,10 @@
 
 import Carousel from '@/components/Carousel/Carousel.jsx';
 import VideoPlayer from '@/components/VideoPlayer/VideoPlayer.jsx';
+import VideoPlayerPlaceholder from '@/components/VideoPlayerPlaceholder/VideoPlayerPlaceholder.jsx';
 import urls from '@/urls.js';
 import useSWR from 'swr';
 import FetchRequest from '@/helpers/FetchRequest.js';
-import VideoPlaceholder from '@/components/VideoPlaceholder.jsx';
 import { FaCircleExclamation } from 'react-icons/fa6';
 
 const { backendApiUrl, mediaServerUrl } = urls;
@@ -36,7 +36,7 @@ export default function CamerasCarousel() {
         </div>
     );
 
-    if (isLoading) return <VideoPlaceholder />
+    if (isLoading) return <VideoPlayerPlaceholder />
 
     const cameras = data?.responseData;
     const hasSeveralCameras = cameras?.length > 1;
