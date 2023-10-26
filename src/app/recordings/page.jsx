@@ -1,10 +1,5 @@
-
-import { Suspense } from 'react';
 import RecordingsList from '@/components/RecordingsList/RecordingsList.jsx';
-import LoadingSpinner from '@/components/Loading/Spinner.jsx';
 import Link from 'next/link';
-import RecordingsListPlaceholder from '@/components/RecordingsListPlaceholder/RecordingsListPlaceholder.jsx';
-import VideoPlaceholder from '@/components/VideoPlaceholder.jsx';
 import Players from '@/components/Players/Players.jsx';
 
 export const metadata = {
