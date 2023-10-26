@@ -2,6 +2,7 @@
 
 import { useSelector, selectSelectedRecording } from '@/lib/redux';
 import VideoPlayer from '@/components/VideoPlayer/VideoPlayer.jsx';
+import CamerasCarousel from '@/components/CamerasCarousel/CamerasCarousel.jsx';
 import urls from '@/urls.js';
 
 const { backendApiUrl } = urls;
@@ -21,9 +22,7 @@ export default function Players() {
 
     return (
         <div>
-            {isLiveSelected ? null : (
-                <VideoPlayer options={recordingVideoPlayerOptions} />
-            )}
+            {isLiveSelected ? <CamerasCarousel /> : <VideoPlayer options={recordingVideoPlayerOptions} />}
         </div>
     );
 }
