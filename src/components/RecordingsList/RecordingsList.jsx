@@ -20,7 +20,7 @@ const recordingsEndpoint = `${backendApiUrl}/v1/recordings`;
 
 const renderDateTitle = (dayjsDate) => (
     <div className="sticky top-0 z-10 bg-white md:backdrop-blur-xl md:bg-white/50">
-        <p className="font-medium py-3 border text-center">
+        <p className="font-medium py-3 border-y text-center">
             {dayjsDate.format('dddd DD MMMM').toUpperCase()}
         </p>
     </div>

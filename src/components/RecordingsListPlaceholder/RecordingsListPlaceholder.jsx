@@ -1,5 +1,5 @@
 const renderDateTitlePlaceholder = () => (
-    <div className="sticky h-12 top-0 flex justify-center items-center bg-white border md:backdrop-blur-xl md:bg-white/50">
+    <div className="sticky h-12 top-0 flex justify-center items-center bg-white border-y md:backdrop-blur-xl md:bg-white/50">
         <div className="w-44 h-6 bg-gray-300 rounded" />
     </div>
 );
