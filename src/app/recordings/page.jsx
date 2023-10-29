@@ -9,33 +9,6 @@ export const metadata = {
 };
 
 export default async function RecordingsPage() {
-
-    const addRecordingToPage = (recordingFilename, index) => {
-        // Create fake design
-        const fakeVideoPlaceholder = (
-            <div
-                id={`fake-video-placeholder-${index}`}
-                className="ph-item ph-picture fake-video-placeholder"
-            />
-        );
-
-        // Create video element
-        const videoElement = <video
-            src={`${recordingsEndpoint}/${recordingFilename}?access_token=mytoken`}
-            controls={true}
-            onLoadedData={() => {
-                // this.style.display = 'block';
-                // fakeVideoPlaceholder.style.display = 'none';
-            }}
-            onError={() => {
-                fakeVideoPlaceholder.textContent = 'Loading error';
-            }}
-        />
-
-        // Append elements to DOM
-        // document.body.append(videoElement, fakeVideoPlaceholder);
-    };
-
     return (
         <div className="flex flex-col h-full">
             <section>
