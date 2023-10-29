@@ -71,8 +71,10 @@ export default function CamerasCarousel() {
         <Carousel
             items={cameras}
             renderItem={(item) => renderCameraVideoPlayer(item)}
-            onMoved={onCarouselSlideChanged}
-            onPaginationUpdated={onPaginationUpdated}
+            splideProps={{
+                onMoved: onCarouselSlideChanged,
+                onPaginationUpdated,
+            }}
         />
     ) : renderCameraVideoPlayer(cameras?.[0]);
 }

@@ -5,11 +5,12 @@ import '@splidejs/react-splide/css';
 import './splide-pisentry-skin.scss';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6';
 
-export default function Carousel({ items, renderItem, onMoved, onPaginationUpdated }) {
+export default function Carousel({ items, renderItem, splideProps }) {
     const hasSeveralItems = items.length > 1;
 
     return (
         <Splide
+            {...splideProps}
             hasTrack={false}
             options={{
                 arrows: hasSeveralItems,
@@ -22,8 +23,6 @@ export default function Carousel({ items, renderItem, onMoved, onPaginationUpdat
                     page: 'splide__pagination__page splide__pagination__page-pisentry'
                 }
             }}
-            onMoved={onMoved}
-            onPaginationUpdated={onPaginationUpdated}
         >
             <SplideTrack>
                 {items.map((item, mapIndex) => (
