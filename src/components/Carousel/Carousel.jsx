@@ -4,8 +4,9 @@ import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
 import './splide-pisentry-skin.scss';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6';
+import videojs from 'video.js';
 
-export default function Carousel({ items, renderItem }) {
+export default function Carousel({ items, renderItem, onMoved }) {
     const hasSeveralItems = items.length > 1;
 
     return (
@@ -22,6 +23,7 @@ export default function Carousel({ items, renderItem }) {
                     page: 'splide__pagination__page splide__pagination__page-pisentry'
                 }
             }}
+            onMoved={onMoved}
         >
             <SplideTrack>
                 {items.map((item, mapIndex) => (
