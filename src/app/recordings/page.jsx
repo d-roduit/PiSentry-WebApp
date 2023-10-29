@@ -40,11 +40,11 @@ export default async function RecordingsPage() {
         <div className="flex flex-col h-full">
             <section>
                 <nav className="flex justify-between items-center mx-5 h-12">
-                    <Link href="/" className="text-xl text-gray-800">
+                    <Link href="/" className="text-xl md:text-2xl text-gray-900">
                         <FaGear />
                     </Link>
                     <CameraName />
-                    <Link href="/recordings" className="text-xl text-gray-800">
+                    <Link href="/recordings" className="text-xl md:text-2xl text-gray-900">
                         <FaVideo />
                     </Link>
                 </nav>
