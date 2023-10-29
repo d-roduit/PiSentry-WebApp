@@ -8,14 +8,13 @@ import useSWR from 'swr';
 import FetchRequest from '@/helpers/FetchRequest.js';
 import { FaCircleExclamation } from 'react-icons/fa6';
 import videojs from 'video.js';
+import {
+    camerasSlice,
+    useDispatch,
+} from '@/lib/redux';
 
 const { backendApiUrl, mediaServerUrl } = urls;
 const camerasEndpoint = `${backendApiUrl}/v1/cameras`;
-
-// const isChangingItemCallback = (prev, next) => {
-//     console.log('is changing item');
-//     console.log(prev.index, next.index);
-// };
 
 const renderCameraVideoPlayer = (cameraData) => (
     <VideoPlayer
@@ -39,6 +38,8 @@ export default function CamerasCarousel() {
         { revalidateOnFocus: false }
     );
 
+    const dispatch = useDispatch();
+
     if (error) return (
         <div>
             <p className="flex items-center text-gray-500">
@@ -61,11 +62,17 @@ export default function CamerasCarousel() {
         prevSlidePlayer.pause();
     }
 
+    const onPaginationUpdated = (splide, data, prev, curr) => {
+        const cameraData = cameras[curr.page];
+        dispatch(camerasSlice.actions.setSelectedCamera(cameraData))
+    };
+
     return hasSeveralCameras ? (
         <Carousel
             items={cameras}
             renderItem={(item) => renderCameraVideoPlayer(item)}
             onMoved={onCarouselSlideChanged}
+            onPaginationUpdated={onPaginationUpdated}
         />
     ) : renderCameraVideoPlayer(cameras?.[0]);
 }
