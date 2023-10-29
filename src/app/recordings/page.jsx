@@ -2,6 +2,7 @@ import RecordingsList from '@/components/RecordingsList/RecordingsList.jsx';
 import Link from 'next/link';
 import Players from '@/components/Players/Players.jsx';
 import CameraName from '@/components/CameraName/CameraName.jsx';
+import { FaGear, FaVideo } from 'react-icons/fa6';
 
 export const metadata = {
     title: 'Recordings',
@@ -38,10 +39,14 @@ export default async function RecordingsPage() {
     return (
         <div className="flex flex-col h-full">
             <section>
-                <nav className="my-2 flex justify-between items-center">
-                    <Link href="/" className="bg-white hover:bg-gray-100 text-gray-800 py-1 px-4 border border-gray-400 rounded shadow">Home</Link>
+                <nav className="flex justify-between items-center mx-5 h-12">
+                    <Link href="/" className="text-xl text-gray-800">
+                        <FaGear />
+                    </Link>
                     <CameraName />
-                    <Link href="/recordings" className="bg-white hover:bg-gray-100 text-gray-800 py-1 px-4 border border-gray-400 rounded shadow ml-3">Recordings</Link>
+                    <Link href="/recordings" className="text-xl text-gray-800">
+                        <FaVideo />
+                    </Link>
                 </nav>
             </section>
             <section>
