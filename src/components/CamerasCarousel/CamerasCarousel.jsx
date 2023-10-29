@@ -11,12 +11,10 @@ import { FaCircleExclamation } from 'react-icons/fa6';
 const { backendApiUrl, mediaServerUrl } = urls;
 const camerasEndpoint = `${backendApiUrl}/v1/cameras`;
 
-const isChangingItemCallback = (prev, next) => {
-    console.log('is changing item');
-    console.log(prev.index, next.index);
-    // prev.domElement.pause();
-    // next.domElement.play();
-};
+// const isChangingItemCallback = (prev, next) => {
+//     console.log('is changing item');
+//     console.log(prev.index, next.index);
+// };
 
 const renderCameraVideoPlayer = (cameraData) => (
     <VideoPlayer
@@ -27,7 +25,7 @@ const renderCameraVideoPlayer = (cameraData) => (
             }
         }}
     />
-)
+);
 
 export default function CamerasCarousel() {
     const { data, error, isLoading } = useSWR(
@@ -55,8 +53,7 @@ export default function CamerasCarousel() {
     return hasSeveralCameras ? (
         <Carousel
             items={cameras}
-            renderItem={({ item, itemRef }) => renderCameraVideoPlayer(item)}
-            onItemChange={isChangingItemCallback}
+            renderItem={(item) => renderCameraVideoPlayer(item)}
         />
     ) : renderCameraVideoPlayer(cameras?.[0]);
 }
