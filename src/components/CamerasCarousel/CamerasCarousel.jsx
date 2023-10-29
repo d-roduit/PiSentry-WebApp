@@ -19,7 +19,7 @@ const camerasEndpoint = `${backendApiUrl}/v1/cameras`;
 const renderCameraVideoPlayer = (cameraData) => (
     <VideoPlayer
         options={{
-            id: `${cameraData.port}`,
+            id: `${cameraData.camera_id}`,
             sources: {
                 src: `${mediaServerUrl}/pisentry/${cameraData.port}/index.m3u8`,
                 type: 'application/x-mpegURL',
@@ -57,7 +57,7 @@ export default function CamerasCarousel() {
         if (newIndex === prevIndex) {
             return;
         }
-        const prevSlidePlayerId = cameras[prevIndex].port;
+        const prevSlidePlayerId = cameras[prevIndex].camera_id;
         const prevSlidePlayer = videojs.players[prevSlidePlayerId];
         prevSlidePlayer.pause();
     }
