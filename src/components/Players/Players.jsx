@@ -10,13 +10,16 @@ const recordingsEndpoint = `${backendApiUrl}/v1/recordings`;
 
 export default function Players() {
     const selectedRecording = useSelector(selectSelectedRecording);
+    const recordingFilename = selectedRecording?.recording_filename;
+    const recordingExtension = selectedRecording?.recording_extension;
+    const recordingMimeType = recordingExtension?.substring(1);
 
     const isLiveSelected = selectedRecording === null;
 
     const recordingVideoPlayerOptions = {
         sources: {
-            src: `${recordingsEndpoint}/${selectedRecording?.recording_filename}?access_token=mytoken#t=0.001`,
-            type: 'video/mp4',
+            src: `${recordingsEndpoint}/${recordingFilename}${recordingExtension}?access_token=mytoken#t=0.001`,
+            type: `video/${recordingMimeType}`,
         },
     };
 
