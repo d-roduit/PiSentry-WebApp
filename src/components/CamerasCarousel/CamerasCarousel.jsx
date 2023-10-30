@@ -15,6 +15,7 @@ import {
 
 const { backendApiUrl, mediaServerUrl } = urls;
 const camerasEndpoint = `${backendApiUrl}/v1/cameras`;
+const thumbnailsEndpoint = `${backendApiUrl}/v1/thumbnails`;
 
 const renderCameraVideoPlayer = (cameraData) => (
     <VideoPlayer
@@ -23,7 +24,8 @@ const renderCameraVideoPlayer = (cameraData) => (
             sources: {
                 src: `${mediaServerUrl}/pisentry/${cameraData.port}/index.m3u8`,
                 type: 'application/x-mpegURL',
-            }
+            },
+            poster: `${thumbnailsEndpoint}/live?access_token=mytoken`,
         }}
     />
 );
