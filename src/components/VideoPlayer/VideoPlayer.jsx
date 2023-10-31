@@ -58,11 +58,20 @@ export default function VideoPlayer({ options, onReady, className }) {
                 readyCallback
             );
 
+            // Make sure that if the poster image cannot be loaded, it will not show a broken image placeholder
+            const posterImageElement = player.posterImage?.el()?.querySelector('img');
+            if (posterImageElement) {
+                posterImageElement.onerror = function() {
+                    this.style.display = 'none';
+                }
+            }
+
             // You could update an existing player in the `else` block here
             // on prop change, for example:
         } else {
             const player = playerRef.current;
             player.src(options.sources);
+            player.poster(options.poster)
         }
     }, [onReady, options, playerContainerRef]);
 

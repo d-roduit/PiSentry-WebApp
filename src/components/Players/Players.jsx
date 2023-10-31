@@ -7,11 +7,14 @@ import urls from '@/urls.js';
 
 const { backendApiUrl } = urls;
 const recordingsEndpoint = `${backendApiUrl}/v1/recordings`;
+const thumbnailsEndpoint = `${backendApiUrl}/v1/thumbnails`;
 
 export default function Players() {
     const selectedRecording = useSelector(selectSelectedRecording);
     const recordingFilename = selectedRecording?.recording_filename;
     const recordingExtension = selectedRecording?.recording_extension;
+    const thumbnailFilename = selectedRecording?.thumbnail_filename;
+    const thumbnailExtension = selectedRecording?.thumbnail_extension;
     const recordingMimeType = recordingExtension?.substring(1);
 
     const isLiveSelected = selectedRecording === null;
@@ -21,6 +24,7 @@ export default function Players() {
             src: `${recordingsEndpoint}/${recordingFilename}${recordingExtension}?access_token=mytoken#t=0.001`,
             type: `video/${recordingMimeType}`,
         },
+        poster: `${thumbnailsEndpoint}/${thumbnailFilename}${thumbnailExtension}?access_token=mytoken`,
     };
 
     return (
