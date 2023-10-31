@@ -34,7 +34,7 @@ const RecordingsListItem = memo(function RecordingsListItem({ data, isSelected }
             </div>
             <div className={`rounded ${isSelected ? 'ml-6 border-4 bg-blue-400 border-blue-400' : 'ml-7'}`}>
                 <Image
-                    src={`${thumbnailsEndpoint}/${thumbnail_filename}${thumbnail_extension}?access_token=mytoken`}
+                    src={`${thumbnailsEndpoint}/${thumbnail_filename}_square${thumbnail_extension}?access_token=mytoken`}
                     width="60"
                     height="60"
                     alt="detection picture"
