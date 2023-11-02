@@ -42,7 +42,7 @@ export default function HomePage() {
             console.log('Service Worker and Push API are supported');
 
             try {
-                const serviceWorkerRegistration= await navigator.serviceWorker.register('../serviceWorker.js');
+                const serviceWorkerRegistration= await navigator.serviceWorker.register('/serviceWorker.js');
                 console.log('service worker registration:', serviceWorkerRegistration);
             } catch (err) {
                 console.error('Service Worker Error:', err);
