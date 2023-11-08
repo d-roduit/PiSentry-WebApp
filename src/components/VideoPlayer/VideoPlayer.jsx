@@ -46,6 +46,7 @@ export default function VideoPlayer({ options, onReady, className }) {
                 userActions: {
                     hotkeys: true,
                 },
+                suppressNotSupportedError: true,
             };
 
             const readyCallback = function() {
