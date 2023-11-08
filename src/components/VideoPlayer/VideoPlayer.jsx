@@ -5,7 +5,7 @@ import videojs from 'video.js';
 import 'video.js/dist/video-js.min.css';
 import './vjs-pisentry-skin.scss';
 
-export default function VideoPlayer({ options, onReady, className }) {
+export default function VideoPlayer({ options, onReady, afterInstantiation, className }) {
     const playerContainerRef = useRef(null);
     const playerRef = useRef(null);
 
@@ -70,6 +70,7 @@ export default function VideoPlayer({ options, onReady, className }) {
                 readyCallback
             );
 
+            afterInstantiation && afterInstantiation(player);
 
             // You could update an existing player in the `else` block here
             // on prop change, for example:
