@@ -19,7 +19,7 @@ export default function HomePage() {
      * Streaming action buttons
      */
     const onClickStartStreamingButton = () =>
-        new FetchRequest(`${backendApiUrl}/v1/streaming/start`)
+        new FetchRequest(`${backendApiUrl}/v1/streaming/1/start`)
             .options({
                 method: 'POST',
                 headers: { Authorization: 'mytoken' }
@@ -27,7 +27,7 @@ export default function HomePage() {
             .make();
 
     const onClickStopStreamingButton = () =>
-        new FetchRequest(`${backendApiUrl}/v1/streaming/stop`)
+        new FetchRequest(`${backendApiUrl}/v1/streaming/1/stop`)
             .options({
                 method: 'POST',
                 headers: { Authorization: 'mytoken' }

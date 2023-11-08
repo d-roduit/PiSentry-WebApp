@@ -25,7 +25,7 @@ const renderCameraVideoPlayer = (cameraData) => (
                 src: `${mediaServerUrl}/pisentry/${cameraData.port}/index.m3u8`,
                 type: 'application/x-mpegURL',
             },
-            poster: `${thumbnailsEndpoint}/live?access_token=mytoken`,
+            poster: `${thumbnailsEndpoint}/${cameraData.camera_id}/live?access_token=mytoken`,
         }}
     />
 );

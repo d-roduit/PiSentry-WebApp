@@ -15,16 +15,17 @@ export default function Players() {
     const recordingExtension = selectedRecording?.recording_extension;
     const thumbnailFilename = selectedRecording?.thumbnail_filename;
     const thumbnailExtension = selectedRecording?.thumbnail_extension;
+    const cameraId = selectedRecording?.camera_id;
     const recordingMimeType = recordingExtension?.substring(1);
 
     const isLiveSelected = selectedRecording === null;
 
     const recordingVideoPlayerOptions = {
         sources: {
-            src: `${recordingsEndpoint}/${recordingFilename}${recordingExtension}?access_token=mytoken#t=0.001`,
+            src: `${recordingsEndpoint}/${cameraId}/${recordingFilename}${recordingExtension}?access_token=mytoken#t=0.001`,
             type: `video/${recordingMimeType}`,
         },
-        poster: `${thumbnailsEndpoint}/${thumbnailFilename}${thumbnailExtension}?access_token=mytoken`,
+        poster: `${thumbnailsEndpoint}/${cameraId}/${thumbnailFilename}${thumbnailExtension}?access_token=mytoken`,
     };
 
     return (
