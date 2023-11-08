@@ -1,8 +1,5 @@
 import './globals.scss'
 import { Inter } from 'next/font/google'
-import Link from 'next/link';
-import { Suspense } from 'react';
-import LoadingSpinner from '@/components/Loading/Spinner.jsx';
 import { ReduxProvider } from '@/lib/redux/ReduxProvider.jsx';
 
 const inter = Inter({ subsets: ['latin'] });
