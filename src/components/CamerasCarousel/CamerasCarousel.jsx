@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect } from 'react';
 import Carousel from '@/components/Carousel/Carousel.jsx';
 import VideoPlayer from '@/components/VideoPlayer/VideoPlayer.jsx';
 import VideoPlayerPlaceholder from '@/components/VideoPlayerPlaceholder/VideoPlayerPlaceholder.jsx';
@@ -152,6 +153,24 @@ export default function CamerasCarousel() {
 
     const dispatch = useDispatch();
 
+    useEffect(() => {
+        const cameras = data?.responseData;
+
+        if (typeof cameras === 'undefined') {
+            return;
+        }
+
+        const hasSeveralCameras = cameras?.length > 1;
+
+        if (hasSeveralCameras) {
+            // We return because it is the `onPaginationUpdated()` handler which will dispatch
+            // the correct camera to be shown first, in case it is not the first one by default.
+            return;
+        }
+
+        dispatch(camerasSlice.actions.setSelectedCamera(cameras?.[0]));
+    }, [data, dispatch]);
+
     if (error) return (
         <div>
             <p className="flex items-center text-gray-500">
@@ -163,12 +182,7 @@ export default function CamerasCarousel() {
     if (isLoading) return <VideoPlayerPlaceholder />
 
     const cameras = data?.responseData;
-    let hasSeveralCameras = cameras?.length > 1;
-
-    if (hasSeveralCameras) {
-        cameras.pop();
-        hasSeveralCameras = false;
-    }
+    const hasSeveralCameras = cameras?.length > 1;
 
     const onCarouselSlideChanged = (splide, newIndex, prevIndex) => {
         if (newIndex === prevIndex) {
@@ -181,7 +195,7 @@ export default function CamerasCarousel() {
 
     const onPaginationUpdated = (splide, data, prev, curr) => {
         const cameraData = cameras[curr.page];
-        dispatch(camerasSlice.actions.setSelectedCamera(cameraData))
+        dispatch(camerasSlice.actions.setSelectedCamera(cameraData));
     };
 
     return hasSeveralCameras ? (
