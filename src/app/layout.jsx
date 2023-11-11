@@ -1,6 +1,10 @@
 import './globals.scss'
 import { Inter } from 'next/font/google'
 import { ReduxProvider } from '@/lib/redux/ReduxProvider.jsx';
+import FetchRequest from '@/helpers/FetchRequest.js';
+import urls from '@/urls.js';
+
+const { camerasApiEndpoint, streamingApiEndpoint } = urls;
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -147,7 +151,36 @@ export const metadata = {
     },
 };
 
-export default function RootLayout({ children }) {
+const startAllCameraStreams = async () => {
+    await new FetchRequest(camerasApiEndpoint)
+        .options({
+            method: 'GET',
+            headers: { Authorization: 'mytoken' },
+        })
+        .responseType(FetchRequest.ResponseType.Json)
+        .success(async (cameras) => {
+            const fetchRequestsPromises = cameras.map((camera) => (
+                new FetchRequest(`${streamingApiEndpoint}/${camera.camera_id}/start`)
+                    .options({
+                        method: 'POST',
+                        headers: { Authorization: 'mytoken' },
+                        next: { revalidate: 0 },
+                    })
+                    .make()
+            ));
+
+            try {
+                await Promise.all(fetchRequestsPromises);
+            } catch (err) {
+                console.log('Exception caught while starting all camera streams');
+            }
+        })
+        .make();
+};
+
+export default async function RootLayout({ children }) {
+    await startAllCameraStreams();
+
     return (
         <ReduxProvider>
             <html lang="en">
