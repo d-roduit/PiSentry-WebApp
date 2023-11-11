@@ -5,9 +5,7 @@ import VideoPlayer from '@/components/VideoPlayer/VideoPlayer.jsx';
 import CamerasCarousel from '@/components/CamerasCarousel/CamerasCarousel.jsx';
 import urls from '@/urls.js';
 
-const { backendApiUrl } = urls;
-const recordingsEndpoint = `${backendApiUrl}/v1/recordings`;
-const thumbnailsEndpoint = `${backendApiUrl}/v1/thumbnails`;
+const { recordingsApiEndpoint, thumbnailsApiEndpoint } = urls;
 
 export default function Players() {
     const selectedRecording = useSelector(selectSelectedRecording);
@@ -22,10 +20,10 @@ export default function Players() {
 
     const recordingVideoPlayerOptions = {
         sources: {
-            src: `${recordingsEndpoint}/${cameraId}/${recordingFilename}${recordingExtension}?access_token=mytoken#t=0.001`,
+            src: `${recordingsApiEndpoint}/${cameraId}/${recordingFilename}${recordingExtension}?access_token=mytoken#t=0.001`,
             type: `video/${recordingMimeType}`,
         },
-        poster: `${thumbnailsEndpoint}/${cameraId}/${thumbnailFilename}${thumbnailExtension}?access_token=mytoken`,
+        poster: `${thumbnailsApiEndpoint}/${cameraId}/${thumbnailFilename}${thumbnailExtension}?access_token=mytoken`,
     };
 
     return (

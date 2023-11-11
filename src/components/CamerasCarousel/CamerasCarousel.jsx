@@ -14,10 +14,12 @@ import {
     useDispatch,
 } from '@/lib/redux';
 
-const { backendApiUrl, mediaServerUrl } = urls;
-const camerasEndpoint = `${backendApiUrl}/v1/cameras`;
-const thumbnailsEndpoint = `${backendApiUrl}/v1/thumbnails`;
-const streamingEndpoint = `${backendApiUrl}/v1/streaming`;
+const {
+    camerasApiEndpoint,
+    thumbnailsApiEndpoint,
+    streamingApiEndpoint,
+    pisentryLivestreamEndpoint,
+} = urls;
 
 const onReadyVideoPlayer = (player, cameraData) => {
     const { camera_id } = cameraData;
@@ -33,7 +35,7 @@ const onReadyVideoPlayer = (player, cameraData) => {
         }
 
         if (startDate === null) {
-            await new FetchRequest(`${streamingEndpoint}/${camera_id}/start`)
+            await new FetchRequest(`${streamingApiEndpoint}/${camera_id}/start`)
                 .options({
                     method: 'POST',
                     headers: { Authorization: 'mytoken' }
@@ -56,7 +58,7 @@ const onReadyVideoPlayer = (player, cameraData) => {
 
         if (seconds >= 6 && !alreadyDid6Seconds) {
             alreadyDid6Seconds = true;
-            await new FetchRequest(`${streamingEndpoint}/${camera_id}/start`)
+            await new FetchRequest(`${streamingApiEndpoint}/${camera_id}/start`)
                 .options({
                     method: 'POST',
                     headers: { Authorization: 'mytoken' }
@@ -102,7 +104,7 @@ const afterVideoPlayerInstantiation = (player, cameraData) => {
         player.error(null); // While retrying, we don't show the error message on the player
 
         if (nbRetriesLeft % fetchWhenNbRetriesIsMultipleOf === 0) {
-            await new FetchRequest(`${streamingEndpoint}/${camera_id}/start`)
+            await new FetchRequest(`${streamingApiEndpoint}/${camera_id}/start`)
                 .options({
                     method: 'POST',
                     headers: { Authorization: 'mytoken' }
@@ -131,10 +133,10 @@ const renderCameraVideoPlayer = (cameraData) => (
         options={{
             id: `${cameraData.camera_id}`, // id for videojs player must be a string
             sources: {
-                src: `${mediaServerUrl}/pisentry/${cameraData.port}/index.m3u8`,
+                src: `${pisentryLivestreamEndpoint}/${cameraData.port}/index.m3u8`,
                 type: 'application/x-mpegURL',
             },
-            poster: `${thumbnailsEndpoint}/${cameraData.camera_id}/live?access_token=mytoken`,
+            poster: `${thumbnailsApiEndpoint}/${cameraData.camera_id}/live?access_token=mytoken`,
         }}
         onReady={(player) => onReadyVideoPlayer(player, cameraData)}
         afterInstantiation={(player) => afterVideoPlayerInstantiation(player, cameraData)}
@@ -143,8 +145,8 @@ const renderCameraVideoPlayer = (cameraData) => (
 
 export default function CamerasCarousel() {
     const { data, error, isLoading } = useSWR(
-        camerasEndpoint,
-        () => new FetchRequest(camerasEndpoint).options({
+        camerasApiEndpoint,
+        () => new FetchRequest(camerasApiEndpoint).options({
             method: 'GET',
             headers: { Authorization: 'mytoken' },
         }).responseType(FetchRequest.ResponseType.Json).make(),

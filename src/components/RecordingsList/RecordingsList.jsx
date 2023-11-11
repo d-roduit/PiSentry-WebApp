@@ -15,8 +15,7 @@ import LiveItem from '@/components/LiveItem/LiveItem.jsx';
 dayjs.locale('fr');
 dayjs.extend(isToday);
 
-const { backendApiUrl } = urls;
-const recordingsEndpoint = `${backendApiUrl}/v1/recordings`;
+const { recordingsApiEndpoint } = urls;
 
 const renderDateTitle = (dayjsDate) => (
     <div className="sticky top-0 z-10 bg-white md:backdrop-blur-xl md:bg-white/50">
@@ -28,11 +27,14 @@ const renderDateTitle = (dayjsDate) => (
 
 export default function RecordingsList() {
     const { data, error, isLoading } = useSWR(
-        recordingsEndpoint,
-        () => new FetchRequest(recordingsEndpoint).options({
-            method: 'GET',
-            headers: { Authorization: 'mytoken' },
-        }).responseType(FetchRequest.ResponseType.Json).make()
+        recordingsApiEndpoint,
+        () => new FetchRequest(recordingsApiEndpoint)
+            .options({
+                method: 'GET',
+                headers: { Authorization: 'mytoken' },
+            })
+            .responseType(FetchRequest.ResponseType.Json)
+            .make()
     );
 
     const recordingsByDate = data?.responseData;

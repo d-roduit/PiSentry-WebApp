@@ -5,7 +5,7 @@ import Link from 'next/link';
 import FetchRequest from '@/helpers/FetchRequest.js';
 import urls from '@/urls.js';
 
-const { backendApiUrl } = urls;
+const { streamingApiEndpoint, notificationsApiEndpoint } = urls;
 
 export default function HomePage() {
 
@@ -19,7 +19,7 @@ export default function HomePage() {
      * Streaming action buttons
      */
     const onClickStartStreamingButton = () =>
-        new FetchRequest(`${backendApiUrl}/v1/streaming/1/start`)
+        new FetchRequest(`${streamingApiEndpoint}/1/start`)
             .options({
                 method: 'POST',
                 headers: { Authorization: 'mytoken' }
@@ -27,7 +27,7 @@ export default function HomePage() {
             .make();
 
     const onClickStopStreamingButton = () =>
-        new FetchRequest(`${backendApiUrl}/v1/streaming/1/stop`)
+        new FetchRequest(`${streamingApiEndpoint}/1/stop`)
             .options({
                 method: 'POST',
                 headers: { Authorization: 'mytoken' }

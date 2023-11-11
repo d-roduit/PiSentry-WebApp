@@ -11,9 +11,7 @@ import {
     useDispatch,
 } from '@/lib/redux';
 
-const { backendApiUrl } = urls;
-
-const thumbnailsEndpoint = `${backendApiUrl}/v1/thumbnails`;
+const { thumbnailsApiEndpoint } = urls;
 
 const RecordingsListItem = memo(function RecordingsListItem({ data, isSelected }) {
     const dispatch = useDispatch();
@@ -34,7 +32,7 @@ const RecordingsListItem = memo(function RecordingsListItem({ data, isSelected }
             </div>
             <div className={`rounded ${isSelected ? 'ml-6 border-4 bg-blue-400 border-blue-400' : 'ml-7'}`}>
                 <Image
-                    src={`${thumbnailsEndpoint}/${camera_id}/${thumbnail_filename}_square${thumbnail_extension}?access_token=mytoken`}
+                    src={`${thumbnailsApiEndpoint}/${camera_id}/${thumbnail_filename}_square${thumbnail_extension}?access_token=mytoken`}
                     width="60"
                     height="60"
                     alt="detection picture"
