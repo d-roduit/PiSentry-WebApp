@@ -1,10 +1,12 @@
 {
   "name": "PiSentry",
   "short_name": "PiSentry",
-  "theme_color": "#31689c",
-  "background_color": "#002645",
+  "description": "Web application to access security camera services offered by PiSentry camera software",
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
   "display": "standalone",
   "orientation": "portrait",
+  "id": "/",
   "start_url": "/",
   "scope": "/",
   "icons": [
@@ -31,6 +33,44 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/assets/manifest/screenshot-mobile-1.jpg",
+      "type": "image/jpg",
+      "sizes": "450x760",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "/assets/manifest/screenshot-mobile-2.jpg",
+      "type": "image/jpg",
+      "sizes": "450x760",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "/assets/manifest/screenshot-mobile-3.jpg",
+      "type": "image/jpg",
+      "sizes": "450x760",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "/assets/manifest/screenshot-desktop-1.jpg",
+      "type": "image/jpg",
+      "sizes": "960x540",
+      "form_factor": "wide"
+    },
+    {
+      "src": "/assets/manifest/screenshot-desktop-2.jpg",
+      "type": "image/jpg",
+      "sizes": "960x540",
+      "form_factor": "wide"
+    },
+    {
+      "src": "/assets/manifest/screenshot-desktop-3.jpg",
+      "type": "image/jpg",
+      "sizes": "960x540",
+      "form_factor": "wide"
     }
   ]
 }
