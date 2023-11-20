@@ -1,2 +1,2 @@
 # PiSentry-WebApp
-Web application to watch live footage from the Raspberry Pi camera and interact with the PiSentry camera software
+Web application to access security camera services offered by PiSentry camera software
