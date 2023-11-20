@@ -1,22 +1,27 @@
-const sendNotification = body => {
-    const title = "New detection";
+const showNotification = data => {
+    const title = data.title || 'PiSentry';
 
     const options = {
-        body,
-        icon: './assets/icons/icon.png',
+        body: data.message || '',
+        icon: data.icon || null,
         badge: './assets/icons/badge.png',
-        // timestamp: // unix time in milliseconds, represent the time at which the notification was sent
+        timestamp: data.timestamp || null // unix time in milliseconds, represent the time at which the notification was sent
     };
 
     return self.registration.showNotification(title, options);
 };
 
 self.addEventListener('push', (event) => {
-    console.log('event:', event);
-    if (event.data) {
-        const message = event.data.text();
-        const notificationPromise = sendNotification(message);
-        event.waitUntil(notificationPromise);
+    if (!event.data) {
+        return;
+    }
+
+    try {
+        const notificationData = event.data.json();
+        const showNotificationPromise = showNotification(notificationData);
+        event.waitUntil(showNotificationPromise);
+    } catch (e) {
+        console.log('Exception caught while parsing json');
     }
 });
 
