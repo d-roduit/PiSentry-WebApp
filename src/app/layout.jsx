@@ -11,13 +11,14 @@ const { camerasApiEndpoint, streamingApiEndpoint } = urls;
 
 const inter = Inter({ subsets: ['latin'] });
 
+export const viewport = {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
+};
+
 export const metadata = {
     charset: 'utf-8',
-        viewport: {
-        width: 'device-width',
-        initialScale: 1,
-        maximumScale: 1,
-    },
     title: {
         template: '%s | PiSentry',
         default: 'PiSentry',
