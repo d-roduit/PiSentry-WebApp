@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import FetchRequest from '@/helpers/FetchRequest.js';
 import urls from '@/urls.js';
@@ -10,10 +10,6 @@ const { streamingApiEndpoint, notificationsApiEndpoint } = urls;
 export default function HomePage() {
 
     const [pushSubscription, setPushSubscription] = useState(null);
-
-    useEffect(() => {
-        registerServiceWorker();
-    }, []);
 
     /**
      * Streaming action buttons
@@ -37,21 +33,6 @@ export default function HomePage() {
     /**
      * Push notifications
      */
-    const registerServiceWorker = async () => {
-        if ('serviceWorker' in navigator && 'PushManager' in window) {
-            console.log('Service Worker and Push API are supported');
-
-            try {
-                const serviceWorkerRegistration= await navigator.serviceWorker.register('/serviceWorker.js');
-                console.log('service worker registration:', serviceWorkerRegistration);
-            } catch (err) {
-                console.error('Service Worker Error:', err);
-            }
-        } else {
-            console.warn('Push messaging is not supported');
-        }
-    };
-
     const onClickSubscribePushNotificationsButton = async () => {
         try {
             const serviceWorkerRegistration = await navigator.serviceWorker.ready;

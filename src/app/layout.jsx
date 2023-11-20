@@ -1,6 +1,8 @@
 import './globals.scss'
 import { Inter } from 'next/font/google'
 import { ReduxProvider } from '@/lib/redux/ReduxProvider.jsx';
+import RegisterOrUpdateServiceWorker
+    from '@/components/RegisterOrUpdateServiceWorker/RegisterOrUpdateServiceWorker.jsx';
 import FetchRequest from '@/helpers/FetchRequest.js';
 import urls from '@/urls.js';
 
@@ -184,8 +186,11 @@ export default async function RootLayout({ children }) {
     return (
         <ReduxProvider>
             <html lang="en">
-                <body className={`${inter.className} h-screen max-h-screen select-none md:w-[600px] md:m-auto md:shadow-2xl`}>
-                    {children}
+                <body className={`${inter.className} h-screen max-h-screen`}>
+                    <RegisterOrUpdateServiceWorker />
+                    <div className="h-full select-none md:w-[600px] md:m-auto md:shadow-2xl">
+                        {children}
+                    </div>
                 </body>
             </html>
         </ReduxProvider>
