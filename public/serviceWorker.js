@@ -20,6 +20,12 @@ self.addEventListener('push', (event) => {
     }
 });
 
+self.addEventListener('message', (event) => {
+    if (event.data === 'SKIP_WAITING') {
+        self.skipWaiting(); // The promise returned by skipWaiting can be safely ignored as per Mozilla's documentation
+    }
+});
+
 /**
  * TODO: when a notification is clicked, open the app to display the corresponding recording
  */
