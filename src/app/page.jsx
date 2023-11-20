@@ -34,16 +34,32 @@ export default function HomePage() {
      * Push notifications
      */
     const onClickSubscribePushNotificationsButton = async () => {
+        if (!('serviceWorker' in navigator && 'PushManager' in window)) {
+            alert('Service Worker, Push API, or both are not supported');
+            return;
+        }
+
         try {
             const serviceWorkerRegistration = await navigator.serviceWorker.ready;
-            setPushSubscription(await serviceWorkerRegistration.pushManager.subscribe({
+            const pushSubscription = await serviceWorkerRegistration.pushManager.subscribe({
                 userVisibleOnly: true,
                 applicationServerKey: 'BDMJlhUeJ0cPUbzzGjZpKBhuPV7XoxaCW2RAFY7gIBrg65JIUCE3Ryxutn5NX1FdA5e1w28y45WTi38aqJZ4FSQ' // encoded in Base64
-            }));
+            });
 
-            // TODO: Send push subscription to the backend to put it in the DB
+            setPushSubscription(pushSubscription);
+
+            await new FetchRequest(`${notificationsApiEndpoint}/subscribe`)
+                .options({
+                    method: 'POST',
+                    headers: {
+                        Authorization: 'mytoken',
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ subscription: pushSubscription }),
+                })
+                .make();
         } catch (err) {
-            console.error(err);
+            console.log('Exception caught while subscribing to push service:', err);
         }
     };
 
