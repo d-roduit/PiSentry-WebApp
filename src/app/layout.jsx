@@ -1,6 +1,7 @@
 import './globals.scss'
 import { Inter } from 'next/font/google'
 import { ReduxProvider } from '@/lib/redux/ReduxProvider.jsx';
+import ClosePushNotifications from '@/components/ClosePushNotifications/ClosePushNotifications.jsx';
 import RegisterOrUpdateServiceWorker
     from '@/components/RegisterOrUpdateServiceWorker/RegisterOrUpdateServiceWorker.jsx';
 import FetchRequest from '@/helpers/FetchRequest.js';
@@ -188,6 +189,7 @@ export default async function RootLayout({ children }) {
             <html lang="en">
                 <body className={`${inter.className} h-screen max-h-screen`}>
                     <RegisterOrUpdateServiceWorker />
+                    <ClosePushNotifications />
                     <div className="h-full select-none md:w-[600px] md:m-auto md:shadow-2xl">
                         {children}
                     </div>
