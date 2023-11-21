@@ -20,8 +20,8 @@ self.addEventListener('push', (event) => {
         const notificationData = event.data.json();
         const showNotificationPromise = showNotification(notificationData);
         event.waitUntil(showNotificationPromise);
-    } catch (e) {
-        console.log('Exception caught while parsing json');
+    } catch (err) {
+        console.log('Exception caught while parsing json:', err);
     }
 });
 
@@ -31,13 +31,10 @@ self.addEventListener('message', (event) => {
     }
 });
 
-/**
- * TODO: when a notification is clicked, open the app to display the corresponding recording
- */
-// self.addEventListener('notificationclick', (event) => {
-//     console.log('[Service Worker] Notification click received.');
-//
-//     event.notification.close(); // close the notification that was clicked
-//
-//     event.waitUntil(clients.openWindow('https://developers.google.com/web')); // load the URL in the app
-// });
+self.addEventListener('notificationclick', async (event) => {
+    try {
+        await self.clients.openWindow('/'); // load the URL in the app
+    } catch (err) {
+        console.log('Exception caught in notification onclick handler:', err);
+    }
+});
