@@ -31,6 +31,12 @@ self.addEventListener('message', (event) => {
     }
 });
 
+self.addEventListener('activate', (event) => {
+    // When the new service-worker becomes activated, we claim all the opened clients,
+    // they can be standalone PWA windows or browser tabs
+    event.waitUntil(self.clients.claim());
+});
+
 self.addEventListener('notificationclick', async (event) => {
     try {
         await self.clients.openWindow('/'); // load the URL in the app
