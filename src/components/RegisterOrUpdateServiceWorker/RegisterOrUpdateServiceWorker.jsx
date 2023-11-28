@@ -88,15 +88,19 @@ export default function RegisterOrUpdateServiceWorker() {
             className="fixed top-0 left-0 z-50 h-[100dvh] w-screen flex justify-center items-center bg-black bg-opacity-50"
             onClick={onClickOverlay}
         >
-            <div className="w-11/12 px-4 py-5 bg-white rounded-xl shadow-2xl md:w-auto md:px-6 md:py-7">
-                <p className="font-bold text-lg">A new version of PiSentry is available !</p>
-                <p className="mt-2">Please reload the page to access the latest features.</p>
-                <button
-                    className="block mx-auto mt-4 px-4 py-2 rounded-lg bg-blue-600 text-white"
-                    onClick={onClickRefreshPageButton}
-                >
-                    Refresh the page
-                </button>
+            <div className="w-11/12 bg-white ring-1 ring-gray-500 rounded-lg shadow-2xl md:w-auto">
+                <div className="px-4 pt-5 md:px-6 md:pt-7">
+                    <p className="text-base font-semibold leading-6 text-gray-900">A new version of PiSentry is available !</p>
+                    <p className="mt-2 text-sm text-gray-600">Please reload the page to access the latest features.</p>
+                </div>
+                <div className="px-4 py-3 mt-4 bg-gray-50 rounded-b-lg md:px-6 flex md:justify-end">
+                    <button
+                        className="w-full px-4 py-2 rounded-lg bg-indigo-600 text-white text-sm font-semibold shadow-sm hover:bg-indigo-500 md:w-auto"
+                        onClick={onClickRefreshPageButton}
+                    >
+                        Refresh the page
+                    </button>
+                </div>
             </div>
         </div>
     ) : null;
