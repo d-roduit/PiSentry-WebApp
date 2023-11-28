@@ -15,9 +15,11 @@ export const viewport = {
     width: 'device-width',
     initialScale: 1,
     maximumScale: 1,
+    themeColor: '#ffffff',
 };
 
 export const metadata = {
+    applicationName: 'PiSentry',
     charset: 'utf-8',
     title: {
         template: '%s | PiSentry',
@@ -26,7 +28,24 @@ export const metadata = {
     description: 'Security camera service using Raspberry Pi',
     manifest: '/manifest.json',
     icons: {
-        apple: '/assets/icons/apple-icon-180.png',
+        icon: [
+            { url: '/favicon.ico', sizes: 'any' },
+            { url: '/icon.svg', type: 'image/svg+xml' },
+            { url: '/icon-16x16.png', sizes: '16x16', type: 'image/png' },
+            { url: '/icon-32x32.png', sizes: '32x32', type: 'image/png' },
+        ],
+        apple: {
+            url: '/apple-touch-icon.png',
+            sizes: '180x180',
+            type: 'image/png',
+        },
+        other: [
+            {
+                rel: 'mask-icon',
+                url: '/assets/icons/apple/safari-pinned-tab.svg',
+                color: '#4338ca',
+            }
+        ],
     },
     appleWebApp: {
         title: 'PiSentry',
@@ -153,6 +172,11 @@ export const metadata = {
             },
         ],
     },
+    other: {
+        'msapplication-TileColor': '#ffffff',
+        'msapplication-TileImage': '/assets/icons/windows/mstile-144x144.png', // used by Windows 8.0 and IE 10 only
+        'msapplication-config': '/browserconfig.xml', // used by Windows 8.1 and 10 with IE 11
+    }
 };
 
 const startAllCameraStreams = async () => {

@@ -4,7 +4,7 @@ const showNotification = data => {
     const options = {
         body: data.message || '',
         icon: data.icon || null,
-        badge: './assets/icons/badge.png',
+        badge: './assets/icons/notification-badge.png',
         timestamp: data.timestamp || null // unix time in milliseconds, represent the time at which the notification was sent
     };
 
