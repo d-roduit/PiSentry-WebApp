@@ -32,12 +32,13 @@ export default function RecordingsList() {
             .options({
                 method: 'GET',
                 headers: { Authorization: 'mytoken' },
+                fetchRequest: { throwException: true },
             })
             .responseType(FetchRequest.ResponseType.Json)
             .make()
     );
 
-    const recordingsByDate = data?.responseData;
+    const recordingsByDate = data?.data;
 
     const selectedRecording = useSelector(selectSelectedRecording);
 
@@ -81,13 +82,6 @@ export default function RecordingsList() {
                         </div>
                     </div>
                 ))}
-
-                {/*{recordingsByDate.map(result =>*/}
-                {/*    <>*/}
-                {/*        <p key={result.recordings_date}>{JSON.stringify(result)}</p>*/}
-                {/*        <br/>*/}
-                {/*    </>*/}
-                {/*)}*/}
             </div>
         );
     };

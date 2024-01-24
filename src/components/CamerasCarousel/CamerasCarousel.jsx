@@ -146,17 +146,21 @@ const renderCameraVideoPlayer = (cameraData) => (
 export default function CamerasCarousel() {
     const { data, error, isLoading } = useSWR(
         camerasApiEndpoint,
-        () => new FetchRequest(camerasApiEndpoint).options({
-            method: 'GET',
-            headers: { Authorization: 'mytoken' },
-        }).responseType(FetchRequest.ResponseType.Json).make(),
+        () => new FetchRequest(camerasApiEndpoint)
+            .options({
+                method: 'GET',
+                headers: { Authorization: 'mytoken' },
+                fetchRequest: { throwException: true },
+            })
+            .responseType(FetchRequest.ResponseType.Json)
+            .make(),
         { revalidateOnFocus: false }
     );
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-        const cameras = data?.responseData;
+        const cameras = data?.data;
 
         if (typeof cameras === 'undefined') {
             return;
@@ -183,7 +187,7 @@ export default function CamerasCarousel() {
 
     if (isLoading) return <VideoPlayerPlaceholder />
 
-    const cameras = data?.responseData;
+    const cameras = data?.data;
     const hasSeveralCameras = cameras?.length > 1;
 
     const onCarouselSlideChanged = (splide, newIndex, prevIndex) => {
