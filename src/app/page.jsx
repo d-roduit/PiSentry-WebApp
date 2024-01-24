@@ -2,21 +2,25 @@ import RecordingsList from '@/components/RecordingsList/RecordingsList.jsx';
 import Link from 'next/link';
 import Players from '@/components/Players/Players.jsx';
 import CameraName from '@/components/CameraName/CameraName.jsx';
-import { FaGear, FaVideo } from 'react-icons/fa6';
+import { TbSettings } from 'react-icons/tb';
+import NavigationHeader from '@/components/NavigationHeader/NavigationHeader.jsx';
 
 export default function RecordingsPage() {
     return (
         <div className="flex flex-col h-screen">
             <section>
-                <nav className="flex justify-between items-center mx-5 h-12">
-                    <Link href="/" className="text-xl md:text-2xl text-gray-900">
-                        <FaGear />
-                    </Link>
-                    <CameraName />
-                    <Link href="/camera-settings" className="text-xl md:text-2xl text-gray-900">
-                        <FaVideo />
-                    </Link>
-                </nav>
+                <NavigationHeader
+                    centerContent={
+                        <div className="px-10 text-center">
+                            <CameraName />
+                        </div>
+                    }
+                    rightContent={
+                        <Link href="/settings" className="text-2xl">
+                            <TbSettings />
+                        </Link>
+                    }
+                />
             </section>
             <section>
                 <Players />
