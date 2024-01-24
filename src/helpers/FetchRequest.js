@@ -126,7 +126,7 @@ export default class FetchRequest {
 
             if (!response.ok) {
                 const responseNotOkCallback = this.responseNotOkCallback ?? FetchRequest.defaultResponseNotOkCallback;
-                if (responseNotOkCallback !== null) {
+                if (responseNotOkCallback) {
                     responseNotOkCallback(response);
                 }
 
@@ -156,14 +156,14 @@ export default class FetchRequest {
             }
 
             const successCallback = this.successCallback ?? FetchRequest.defaultSuccessCallback;
-            if (successCallback !== null) {
+            if (successCallback) {
                 successCallback(data, response);
             }
 
             return { data, response };
         } catch (err) {
             const exceptionCallback = this.exceptionCallback ?? FetchRequest.defaultExceptionCallback;
-            if (exceptionCallback !== null) {
+            if (exceptionCallback) {
                 exceptionCallback(err, response);
             }
 
