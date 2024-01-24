@@ -3,7 +3,7 @@ import { Suspense } from 'react';
 
 export default function RootTemplate({ children }) {
     return (
-        <Suspense fallback={<LoadingSpinner />}>
+        <Suspense fallback={<div className="h-screen w-full flex justify-center items-center"><LoadingSpinner /></div>}>
             {children}
         </Suspense>
     );

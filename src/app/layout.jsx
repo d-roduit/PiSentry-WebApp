@@ -203,6 +203,7 @@ const startAllCameraStreams = async () => {
                 console.log('Exception caught while starting all camera streams');
             }
         })
+        .exception(() => console.log('Exception caught while fetching cameras'))
         .make();
 };
 
@@ -212,10 +213,10 @@ export default async function RootLayout({ children }) {
     return (
         <ReduxProvider>
             <html lang="en">
-                <body className={`${inter.className} h-screen max-h-screen`}>
+                <body className={inter.className}>
                     <RegisterOrUpdateServiceWorker />
                     <ClosePushNotifications />
-                    <div className="h-full select-none md:w-[600px] md:m-auto md:shadow-2xl">
+                    <div className="min-h-screen h-full select-none md:w-[600px] md:m-auto md:shadow-2xl">
                         {children}
                     </div>
                 </body>

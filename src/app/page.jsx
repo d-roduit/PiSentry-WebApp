@@ -4,9 +4,9 @@ import Players from '@/components/Players/Players.jsx';
 import CameraName from '@/components/CameraName/CameraName.jsx';
 import { FaGear, FaVideo } from 'react-icons/fa6';
 
-export default async function RecordingsPage() {
+export default function RecordingsPage() {
     return (
-        <div className="flex flex-col h-full">
+        <div className="flex flex-col h-screen">
             <section>
                 <nav className="flex justify-between items-center mx-5 h-12">
                     <Link href="/" className="text-xl md:text-2xl text-gray-900">
