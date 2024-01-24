@@ -31,7 +31,7 @@ const renderRecordingsListItemsPlaceholder = () => {
     return items.map((item, index) => renderRecordingsListItemPlaceholder(index));
 }
 
-export default async function RecordingsListPlaceholder() {
+export default function RecordingsListPlaceholder() {
     return (
         <div>
             {new Array(2).fill(null).map((item, index) => (
