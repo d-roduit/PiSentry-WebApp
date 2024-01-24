@@ -8,7 +8,7 @@ export default function CameraName() {
     const isLiveSelected = selectedRecording === null;
     return isLiveSelected
         ? (
-            <p className="text-gray-900 md:text-lg font-bold first-letter:capitalize px-10 whitespace-nowrap overflow-hidden overflow-ellipsis">
+            <p className="first-letter:capitalize whitespace-nowrap overflow-hidden overflow-ellipsis">
                 {selectedCamera?.name}
             </p>
         )
