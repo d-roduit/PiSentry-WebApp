@@ -1,15 +1,10 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Modal from '@/components/Modal/Modal.jsx';
 
 export default function RegisterOrUpdateServiceWorker() {
     const [showUpdateModal, setShowUpdateModal] = useState(false);
-
-    const onClickOverlay = (event) => {
-        if (event.target === event.currentTarget) {
-            setShowUpdateModal(false);
-        }
-    }
 
     const onClickRefreshPageButton = async () => {
         setShowUpdateModal(false);
@@ -84,24 +79,32 @@ export default function RegisterOrUpdateServiceWorker() {
     }, []);
 
     return showUpdateModal ? (
-        <div
-            className="fixed top-0 left-0 z-50 h-[100dvh] w-screen flex justify-center items-center bg-black bg-opacity-50"
-            onClick={onClickOverlay}
-        >
-            <div className="w-11/12 bg-white ring-1 ring-gray-500 rounded-lg shadow-2xl md:w-auto">
-                <div className="px-4 pt-5 md:px-6 md:pt-7">
-                    <p className="text-base font-semibold leading-6 text-gray-900">A new version of PiSentry is available !</p>
-                    <p className="mt-2 text-sm text-gray-600">Please reload the page to access the latest features.</p>
+        <Modal
+            header={
+                <p className="text-lg font-semibold leading-6 text-gray-900">
+                    A new version of PiSentry is available !
+                </p>
+            }
+            body={
+                <div className="space-y-4">
+                    <p className="text-base text-gray-600 leading-relaxed">
+                        Please reload the page to access the latest features.
+                    </p>
                 </div>
-                <div className="px-4 py-3 mt-4 bg-gray-50 rounded-b-lg md:px-6 flex md:justify-end">
+            }
+            footer={
+                <div className="flex sm:justify-end">
                     <button
-                        className="w-full px-4 py-2 rounded-lg bg-indigo-600 text-white text-sm font-semibold shadow-sm hover:bg-indigo-500 md:w-auto"
+                        className="w-full px-5 py-2.5 rounded-lg bg-indigo-600 text-white text-sm text-center font-medium shadow-sm hover:bg-indigo-700 sm:w-auto"
                         onClick={onClickRefreshPageButton}
                     >
                         Refresh the page
                     </button>
                 </div>
-            </div>
-        </div>
+            }
+            closeButton={true}
+            onClickOverlay={() => setShowUpdateModal(false)}
+            onClickCloseButton={() => setShowUpdateModal(false)}
+        />
     ) : null;
 }
