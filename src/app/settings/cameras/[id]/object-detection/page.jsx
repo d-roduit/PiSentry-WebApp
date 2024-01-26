@@ -55,10 +55,10 @@ export default async function ObjectDetectionPage({ params }) {
                 <div className="mt-8">
                     <p className="px-3 pb-2 font-medium text-indigo-600">Actions to perform</p>
                     {exception || notOk ? (
-                        <p className="flex items-center px-3 text-gray-500">
+                        <div className="flex items-center px-3 text-gray-500">
                             <FaCircleExclamation className="text-xl shrink-0"/>
                             <p className="ml-2">Error while recovering actions data</p>
-                        </p>
+                        </div>
                     ) : (
                         hasDetectableObjects ? (
                             <DetectableObjectsList cameraId={cameraId} detectableObjects={detectableObjects} />

@@ -52,10 +52,10 @@ export default function DetectableObjectsList({ cameraId, detectableObjects }) {
                                     <LoadingSpinner className="mt-2 h-3 w-3 border border-gray-500 border-r-transparent" />
                                 ) : (
                                     exception || notOk ? (
-                                        <p className="flex items-center text-gray-500 text-sm">
+                                        <div className="flex items-center text-gray-500 text-sm">
                                             <FaCircleExclamation className="shrink-0" />
                                             <p className="ml-2">Error while recovering action</p>
-                                        </p>
+                                        </div>
                                     ) : (
                                         <p className="text-sm text-gray-500">
                                             {mapObjectTypeToActionText?.[object_type]}

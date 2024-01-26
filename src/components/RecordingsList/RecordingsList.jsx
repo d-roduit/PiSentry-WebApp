@@ -88,10 +88,10 @@ export default function RecordingsList() {
 
     if (error) return (
         <div className="mt-10">
-            <p className="flex flex-col items-center text-gray-500">
+            <div className="flex flex-col items-center text-gray-500">
                 <FaCircleExclamation className="text-xl shrink-0" />
                 <p className="mt-2">Error while recovering recordings</p>
-            </p>
+            </div>
         </div>
     );
 

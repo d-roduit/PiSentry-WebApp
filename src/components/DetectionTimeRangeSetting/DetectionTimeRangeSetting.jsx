@@ -125,10 +125,10 @@ export default function DetectionTimeRangeSetting({ cameraId }) {
             return (
                 <TimeRangePlaceholder
                     content={
-                        <p className="flex items-center text-gray-500">
+                        <div className="flex items-center text-gray-500">
                             <FaCircleExclamation className="text-lg shrink-0"/>
                             <p className="ml-2">Error while recovering time range</p>
-                        </p>
+                        </div>
                     }
                 />
             );
@@ -144,10 +144,10 @@ export default function DetectionTimeRangeSetting({ cameraId }) {
                     return (
                         <TimeRangePlaceholder
                             content={
-                                <p className="flex items-center text-gray-500">
+                                <div className="flex items-center text-gray-500">
                                     <FaCircleExclamation className="text-lg shrink-0"/>
                                     <p className="ml-2">Server error while recovering time range</p>
-                                </p>
+                                </div>
                             }
                         />
                     );

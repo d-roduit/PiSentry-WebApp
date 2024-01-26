@@ -180,10 +180,10 @@ export default function CamerasSettingsList() {
 
     if (error) return (
         <main className="px-3 mt-10">
-            <p className="flex flex-col items-center text-gray-500">
+            <div className="flex flex-col items-center text-gray-500">
                 <FaCircleExclamation className="text-xl shrink-0" />
                 <p className="mt-2">Error while recovering cameras</p>
-            </p>
+            </div>
         </main>
     );
 

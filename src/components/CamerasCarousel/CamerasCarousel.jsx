@@ -179,10 +179,10 @@ export default function CamerasCarousel() {
 
     if (error) return (
         <div className="relative">
-            <p className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center text-gray-500 w-full">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center text-gray-500 w-full">
                 <FaCircleExclamation className="text-xl shrink-0" />
                 <p className="mt-2">Error while recovering cameras</p>
-            </p>
+            </div>
             <VideoPlayerPlaceholder />
         </div>
     );

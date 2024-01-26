@@ -123,10 +123,10 @@ export default function RenameCameraSetting({ cameraId }) {
         return (
             <RenameCameraSettingPlaceholder
                 content={
-                    <p className="flex items-center text-gray-500">
+                    <div className="flex items-center text-gray-500">
                         <FaCircleExclamation className="shrink-0" />
                         <p className="ml-2">Error while recovering camera name</p>
-                    </p>
+                    </div>
                 }
             />
         );
@@ -142,10 +142,10 @@ export default function RenameCameraSetting({ cameraId }) {
                 return (
                     <RenameCameraSettingPlaceholder
                         content={
-                            <p className="flex items-center text-gray-500">
+                            <div className="flex items-center text-gray-500">
                                 <FaCircleExclamation className="shrink-0" />
                                 <p className="ml-2">Server error while recovering camera name</p>
-                            </p>
+                            </div>
                         }
                     />
                 );

@@ -16,10 +16,10 @@ export default async function ObjectDetectionActionsList({ cameraId, objectType 
 
     if (exception) {
         return (
-            <p className="flex flex-col items-center px-3 text-gray-500">
+            <div className="flex flex-col items-center px-3 text-gray-500">
                 <FaCircleExclamation className="text-xl shrink-0"/>
                 <p className="mt-2">Error while recovering detection actions</p>
-            </p>
+            </div>
         );
     }
 
@@ -31,10 +31,10 @@ export default async function ObjectDetectionActionsList({ cameraId, objectType 
         }
 
         return (
-            <p className="flex flex-col items-center px-3 text-gray-500">
+            <div className="flex flex-col items-center px-3 text-gray-500">
                 <FaCircleExclamation className="text-xl shrink-0"/>
                 <p className="mt-2">{errorMessage}</p>
-            </p>
+            </div>
         );
     }
 
