@@ -11,6 +11,8 @@ import RecordingsListPlaceholder from '@/components/RecordingsListPlaceholder/Re
 import useSWR from 'swr';
 import { useSelector, selectSelectedRecording } from '@/lib/redux';
 import LiveItem from '@/components/LiveItem/LiveItem.jsx';
+import { groupBy as lodashGroupBy, map as lodashMap, orderBy as lodashOrderBy } from 'lodash-es';
+import { useMemo } from 'react';
 
 dayjs.locale('fr');
 dayjs.extend(isToday);
@@ -38,23 +40,35 @@ export default function RecordingsList() {
             .make()
     );
 
-    const recordingsByDate = data?.data;
+    const recordingsFromDb = data?.data;
+
+    let recordingsByDateFormattedSorted = useMemo(() => {
+        const recordingsByDate = lodashGroupBy(
+            recordingsFromDb,
+            (obj) => dayjs(obj.recorded_at).format('YYYY-MM-DD')
+        );
+        const recordingsByDateFormatted = lodashMap(
+            recordingsByDate,
+            (value, key) => ({ recordings_date: key, recordings: value })
+        );
+        return lodashOrderBy(recordingsByDateFormatted, ['recordings_date'], ['desc']);
+    }, [recordingsFromDb]);
 
     const selectedRecording = useSelector(selectSelectedRecording);
 
     const isLiveSelected = selectedRecording === null;
 
-    const renderRecordingsListItems = (detection_sessions) =>
-        detection_sessions
-            .sort((a, b) => b.detection_session_id - a.detection_session_id) // Sort in descending order
-            .map(({ recordings }) =>
-                recordings.map(recording => (
-                    <RecordingsListItem key={recording.recording_id} data={recording} isSelected={selectedRecording?.recording_id === recording.recording_id}/>
-                ))
-            );
+    const renderRecordingsListItems = (recordings) =>
+        recordings.map(recording => (
+            <RecordingsListItem
+                key={recording.recording_id}
+                data={recording}
+                isSelected={selectedRecording?.recording_id === recording.recording_id}
+            />
+        ));
 
     const recordingsContainTodaysDate = () => {
-        const mostRecentRecordingsDate = recordingsByDate[0]?.recordings_date;
+        const mostRecentRecordingsDate = recordingsByDateFormattedSorted[0]?.recordings_date;
         return typeof mostRecentRecordingsDate === 'undefined' ? false : dayjs(mostRecentRecordingsDate).isToday();
     };
 
@@ -73,12 +87,12 @@ export default function RecordingsList() {
                     </div>
                 )}
 
-                {recordingsByDate.map(({ recordings_date, detection_sessions }, mapIndex) => (
+                {recordingsByDateFormattedSorted.map(({ recordings_date, recordings }, mapIndex) => (
                     <div key={recordings_date}>
                         {renderDateTitle(dayjs(recordings_date))}
                         <div>
                             {mapIndex === 0 && containsTodaysDate && <LiveItem isSelected={isLiveSelected} />}
-                            {renderRecordingsListItems(detection_sessions)}
+                            {renderRecordingsListItems(recordings)}
                         </div>
                     </div>
                 ))}
