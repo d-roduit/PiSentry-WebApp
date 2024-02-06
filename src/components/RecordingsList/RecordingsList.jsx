@@ -37,7 +37,8 @@ export default function RecordingsList() {
                 fetchRequest: { throwException: true },
             })
             .responseType(FetchRequest.ResponseType.Json)
-            .make()
+            .make(),
+        { refreshInterval: 10000 }
     );
 
     const recordingsFromDb = data?.data;
