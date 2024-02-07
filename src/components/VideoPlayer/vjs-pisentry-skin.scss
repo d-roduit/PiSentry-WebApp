@@ -24,6 +24,12 @@
         }
     }
 
+    &.vjs-waiting {
+        .vjs-big-play-button {
+            display: none;
+        }
+    }
+
     .vjs-big-play-button {
         margin-top: 0;
         margin-left: 0;

@@ -95,6 +95,10 @@ const afterVideoPlayerInstantiation = (player, cameraData) => {
             return;
         }
 
+        if (nbRetriesLeft <= 0) {
+            player.removeClass('vjs-waiting');
+        }
+
         if (isRetrying || (errorCode !== 2 && errorCode !== 4) || nbRetriesLeft <= 0) {
             return;
         }
@@ -102,6 +106,7 @@ const afterVideoPlayerInstantiation = (player, cameraData) => {
         isRetrying = true;
 
         player.error(null); // While retrying, we don't show the error message on the player
+        player.addClass('vjs-waiting');
 
         if (nbRetriesLeft % fetchWhenNbRetriesIsMultipleOf === 0) {
             await new FetchRequest(`${streamingApiEndpoint}/${camera_id}/start`)
@@ -119,13 +124,29 @@ const afterVideoPlayerInstantiation = (player, cameraData) => {
         setTimeout(() => {
             try {
                 player.load();
+
+                if (videojs.browser.IS_FIREFOX || videojs.browser.IS_IOS) {
+                    const playPromise = player.play();
+
+                    if (playPromise !== undefined) {
+                        playPromise.then(_ => {
+                            // Autoplay started!
+                        }).catch(error => {
+                            // Autoplay was prevented.
+                            // Show a "Play" button so that user can start playback.
+                            player.removeClass('vjs-waiting');
+                        });
+                    }
+                } else {
+                    player.removeClass('vjs-waiting');
+                }
             } catch (err) {
                 console.log('Exception caught while trying to load player:', err);
             }
 
             isRetrying = false;
         }, retryDelay);
-    })
+    });
 }
 
 const renderCameraVideoPlayer = (cameraData) => (
