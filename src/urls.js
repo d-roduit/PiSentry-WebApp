@@ -1,6 +1,6 @@
 const development = {
-    backendApiUrl: 'http://192.168.1.211:7070',
-    mediaServerUrl: 'http://192.168.1.211:6060',
+    backendApiUrl: 'https://192.168.1.211:7043',
+    mediaServerUrl: 'https://192.168.1.211:6043',
     get streamingApiEndpoint() { return `${this.backendApiUrl}/v1/streaming`; },
     get thumbnailsApiEndpoint() { return `${this.backendApiUrl}/v1/thumbnails`; },
     get camerasApiEndpoint() { return `${this.backendApiUrl}/v1/cameras`; },
@@ -13,8 +13,8 @@ const development = {
 };
 
 const production = {
-    backendApiUrl: 'http://api.pisentry.app',
-    mediaServerUrl: 'http://mediaserver.pisentry.app',
+    backendApiUrl: 'https://api.pisentry.app',
+    mediaServerUrl: 'https://mediaserver.pisentry.app',
     get streamingApiEndpoint() { return `${this.backendApiUrl}/v1/streaming`; },
     get thumbnailsApiEndpoint() { return `${this.backendApiUrl}/v1/thumbnails`; },
     get camerasApiEndpoint() { return `${this.backendApiUrl}/v1/cameras`; },
