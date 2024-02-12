@@ -3,14 +3,12 @@ const nextConfig = {
     images: {
         remotePatterns: [
             {
-                // protocol: 'http',
-                hostname: '127.0.0.1',
-                // port: '',
-                // pathname: '/*',
+                protocol: 'https',
+                hostname: '*.pisentry.app',
             },
-            {
-                hostname: '192.168.1.211',
-            }
+            { hostname: 'localhost' },
+            { hostname: '127.0.0.1' },
+            { hostname: '192.168.1.211' },
         ],
     },
 }
