@@ -1,4 +1,4 @@
-.splide__arrows-pisentry {
+.splide__arrows.splide__arrows-pisentry {
   @apply flex justify-center items-center;
 
   .splide__arrow--prev-pisentry,
@@ -15,7 +15,7 @@
   }
 }
 
-.splide__pagination-pisentry {
+.splide__pagination.splide__pagination-pisentry {
   @apply static p-0 mx-4 gap-4;
 
   li {
