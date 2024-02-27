@@ -34,3 +34,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# HTTPS certificates
+https_certificates/*
+!https_certificates/.gitkeep
