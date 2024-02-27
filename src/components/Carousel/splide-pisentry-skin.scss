@@ -1,0 +1,36 @@
+.splide__arrows.splide__arrows-pisentry {
+  @apply flex justify-center items-center;
+
+  .splide__arrow--prev-pisentry,
+  .splide__arrow--next-pisentry {
+    &:disabled {
+      cursor: pointer;
+    }
+  }
+
+  .splide__arrow--prev-pisentry {
+    svg {
+      @apply transform-none;
+    }
+  }
+}
+
+.splide__pagination.splide__pagination-pisentry {
+  @apply static p-0 mx-4 gap-4;
+
+  li {
+    @apply flex justify-center items-center;
+
+    .splide__pagination__page-pisentry {
+      @apply w-3 h-3 bg-gray-400 rounded-full m-0 transition-colors opacity-100;
+
+      &:hover {
+        @apply bg-gray-500 opacity-100;
+      }
+
+      &.is-active {
+        @apply bg-gray-800 transform-none;
+      }
+    }
+  }
+}

@@ -2,29 +2,46 @@
   "name": "pisentry-webapp",
   "version": "1.0.0",
   "description": "Web application to watch live footage from the Raspberry Pi camera and interact with the PiSentry camera software",
-  "main": "server.js",
-  "scripts": {
-    "start": "nodemon -r dotenv/config server.js"
-  },
+  "private": true,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/d-roduit/PiSentry-WebApp.git"
   },
-  "author": "",
+  "author": "Daniel Roduit",
   "license": "ISC",
   "type": "module",
+  "homepage": "https://github.com/d-roduit/PiSentry-WebApp",
   "bugs": {
     "url": "https://github.com/d-roduit/PiSentry-WebApp/issues"
   },
-  "homepage": "https://github.com/d-roduit/PiSentry-WebApp",
+  "scripts": {
+    "httpsdev": "node -r dotenv/config server.js",
+    "dev": "next dev -p 8080",
+    "build": "next build",
+    "start": "next start -p 8080",
+    "lint": "next lint"
+  },
   "dependencies": {
-    "dotenv": "^16.3.1",
-    "express": "^4.18.2",
-    "flv.js": "^1.6.2",
-    "video.js": "^8.3.0",
-    "videojs-flvjs": "^0.2.0"
+    "@reduxjs/toolkit": "^2.1.0",
+    "@splidejs/react-splide": "^0.7.12",
+    "autoprefixer": "^10.4.17",
+    "dayjs": "^1.11.10",
+    "eslint": "^8.56.0",
+    "eslint-config-next": "^14.1.0",
+    "lodash-es": "^4.17.21",
+    "next": "^14.0.4",
+    "postcss": "^8.4.35",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^5.0.1",
+    "react-redux": "^9.1.0",
+    "swr": "^2.2.4",
+    "tailwind-merge": "^2.2.1",
+    "tailwindcss": "^3.4.1",
+    "video.js": "^8.10.0"
   },
   "devDependencies": {
-    "nodemon": "^3.0.1"
+    "dotenv": "^16.4.5",
+    "sass": "^1.70.0"
   }
 }
