@@ -24,7 +24,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^2.1.0",
     "@splidejs/react-splide": "^0.7.12",
-    "autoprefixer": "^10.4.17",
+    "autoprefixer": "^10.4.20",
     "dayjs": "^1.11.12",
     "eslint": "^8.56.0",
     "eslint-config-next": "^14.1.0",
