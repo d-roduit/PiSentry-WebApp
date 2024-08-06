@@ -27,7 +27,7 @@
     "autoprefixer": "^10.4.20",
     "dayjs": "^1.11.12",
     "eslint": "^8.57.0",
-    "eslint-config-next": "^14.1.0",
+    "eslint-config-next": "^14.2.5",
     "lodash-es": "^4.17.21",
     "next": "^14.0.4",
     "postcss": "^8.4.41",
